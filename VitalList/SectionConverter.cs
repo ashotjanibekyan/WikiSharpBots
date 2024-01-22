@@ -99,7 +99,6 @@ public static class SectionConverter
                     return;
                 }
 
-                Console.WriteLine(entitle);
                 var pages = await GetPages(entitle, wikidata, enwiki, ruwiki, hywiki);
                 var row = new List<object>
                 {
@@ -113,6 +112,9 @@ public static class SectionConverter
                     pages.Hy.LengthStr,
                     Helper.GetSign(entitle)
                 };
+                var logOutput = $"En: {pages.En.Title}" +
+                                (!string.IsNullOrEmpty(pages.Ru.Title) ? $", Ru: {pages.Ru.Title}" : "") +
+                                (!string.IsNullOrEmpty(pages.Hy.Title) ? $", Hy: {pages.Hy.Title}" : "");
                 switch (pages.Hy.Length)
                 {
                     case 0:
@@ -129,6 +131,7 @@ public static class SectionConverter
                         longTable.Add(row);
                         break;
                 }
+                Console.WriteLine(logOutput);
             }));
         }
 
@@ -146,7 +149,6 @@ public static class SectionConverter
             new PageResult(),
             new PageResult(), "");
         var enPage = new WikiPage(enwiki, entitle);
-        Console.WriteLine(entitle);
         await enPage.RefreshAsync(PageQueryOptions.None);
         if (!enPage.Exists)
         {

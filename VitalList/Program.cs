@@ -1,6 +1,9 @@
-﻿using Utils;
+﻿using System.Text;
+using Utils;
 using VitalList;
 using WikiClientLibrary.Pages;
+
+Console.OutputEncoding = Encoding.UTF8;
 
 var hywiki = await WikiSiteFactory.GetWikipediaSite("hy");
 var enwiki = await WikiSiteFactory.GetWikipediaSite("en");
@@ -11,11 +14,6 @@ var topicPagesList = Helper.GetTopicPagesList();
 
 foreach (var topicPages in topicPagesList)
 {
-    if (!topicPages.HyLong.Contains("Մաթեմատիկա"))
-    {
-        continue;
-    }
-
     var enPage = new WikiPage(enwiki, topicPages.En);
     var hyLongPage = new WikiPage(hywiki, topicPages.HyLong);
     var hyMidPage = new WikiPage(hywiki, topicPages.HyMid);
