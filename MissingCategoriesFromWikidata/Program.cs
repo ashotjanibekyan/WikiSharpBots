@@ -37,6 +37,7 @@ await foreach (var page in gen.EnumPagesAsync())
             var entity = new Entity(wikidata, q);
             await entity.RefreshAsync(EntityQueryOptions.FetchClaims);
             foreach (var kvp in vatItemMap)
+            {
                 if (entity.Claims.ContainsKey(kvp.Key))
                 {
                     var claims = entity.Claims[kvp.Key];
@@ -66,6 +67,7 @@ await foreach (var page in gen.EnumPagesAsync())
                         }
                     }
                 }
+            }
         }
         catch (Exception e)
         {
