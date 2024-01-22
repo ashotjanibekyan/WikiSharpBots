@@ -41,8 +41,15 @@ for (var i = 0; i < sampleSize; i++)
                 {
                     var enDescription = entity.Descriptions["en"];
 
-                    if (enDescription is null || translations.Contains(enDescription)) return;
-                    if (!data.TryAdd(enDescription, 1)) data[enDescription] += 1;
+                    if (enDescription is null || translations.Contains(enDescription))
+                    {
+                        return;
+                    }
+
+                    if (!data.TryAdd(enDescription, 1))
+                    {
+                        data[enDescription] += 1;
+                    }
                 }
             }
         }

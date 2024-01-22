@@ -6,7 +6,11 @@ public static class WikitextUtils
 {
     public static string ToWikiTable(List<List<object>> data, List<string> headers, bool addIndex = false)
     {
-        if (data.Count == 0) return string.Empty;
+        if (data.Count == 0)
+        {
+            return string.Empty;
+        }
+
         StringBuilder sb = new();
         sb.AppendLine("""
                       {| class="wikitable sortable"
