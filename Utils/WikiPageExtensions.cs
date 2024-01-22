@@ -5,7 +5,7 @@ using WikiClientLibrary.Wikibase;
 
 namespace Utils;
 
-public static class WIkiPageExtensions
+public static class WikiPageExtensions
 {
     public static async Task<string?> GetQ(this WikiPage wikiPage)
     {
