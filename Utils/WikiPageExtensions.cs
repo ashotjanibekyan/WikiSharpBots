@@ -7,6 +7,27 @@ namespace Utils;
 
 public static class WikiPageExtensions
 {
+    public static async Task<string> GetParsedContent(this WikiPage wikiPage)
+    {
+        try
+        {
+            var request = new MediaWikiFormRequestMessage(new Dictionary<string, string>
+            {
+                { "action", "parse" },
+                { "prop", "text" },
+                { "formatversion", "2" },
+                { "page", wikiPage.Title }
+            });
+            var result = await wikiPage.Site.InvokeMediaWikiApiAsync(request, new CancellationToken());
+            return result["parse"]["text"].ToString();
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+    }
+    
+    
     public static async Task<string?> GetQ(this WikiPage wikiPage)
     {
         try
