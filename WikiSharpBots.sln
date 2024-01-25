@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonEnglishDescriptions",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitalList", "VitalList\VitalList.csproj", "{2E75A12A-76BD-439A-BD2E-3A11A4FD2E1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{BA170449-FFC1-4788-89E4-0944953E1D1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikidataDescriptor", "WikidataDescriptor\WikidataDescriptor.csproj", "{FA5D6B41-31E8-4576-AA98-BA23B5D3A207}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,9 +38,9 @@ Global
 		{2E75A12A-76BD-439A-BD2E-3A11A4FD2E1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E75A12A-76BD-439A-BD2E-3A11A4FD2E1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E75A12A-76BD-439A-BD2E-3A11A4FD2E1D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA170449-FFC1-4788-89E4-0944953E1D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA170449-FFC1-4788-89E4-0944953E1D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA170449-FFC1-4788-89E4-0944953E1D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA170449-FFC1-4788-89E4-0944953E1D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA5D6B41-31E8-4576-AA98-BA23B5D3A207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA5D6B41-31E8-4576-AA98-BA23B5D3A207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA5D6B41-31E8-4576-AA98-BA23B5D3A207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA5D6B41-31E8-4576-AA98-BA23B5D3A207}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
