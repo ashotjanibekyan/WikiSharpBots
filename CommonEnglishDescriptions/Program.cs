@@ -1,5 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using CommonEnglishDescriptions;
 using Newtonsoft.Json;
 using Utils;
 using WikiClientLibrary.Pages;
