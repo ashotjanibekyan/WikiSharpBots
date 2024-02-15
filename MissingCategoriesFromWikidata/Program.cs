@@ -46,10 +46,18 @@ await foreach (var page in gen.EnumPagesAsync())
                         var val = new Entity(wikidata, claim.MainSnak.DataValue.ToString());
                         await val.RefreshAsync(EntityQueryOptions.FetchClaims);
                         var catQ = val.Claims[kvp.Value].FirstOrDefault();
-                        if (catQ is null) continue;
+                        if (catQ is null)
+                        {
+                            continue;
+                        }
+
                         var catItem = new Entity(wikidata, catQ.MainSnak.DataValue.ToString());
                         await catItem.RefreshAsync(EntityQueryOptions.FetchSiteLinks);
-                        if (catItem.SiteLinks.ContainsKey("hywiki")) continue;
+                        if (catItem.SiteLinks.ContainsKey("hywiki"))
+                        {
+                            continue;
+                        }
+
                         await catItem.RefreshAsync(EntityQueryOptions.FetchLabels);
                         var key = catItem.Id!;
                         if (catItem.Labels.ContainsLanguage("en"))
@@ -82,7 +90,7 @@ var sorted = data.Select(kvp => new List<object>{kvp.Key, kvp.Value})
     .OrderByDescending(t => (t[1], t[0]))
     .ToList();
 
-var destPage = new WikiPage(hywiki, "Մասնակից:ԱշոտՏՆՂ/ցանկեր/շատ օգտագործվող չթարգմանված տարրեր/կատեգորիա")
+var destPage = new WikiPage(hywiki, "Վիքիպեդիա:Ցանկեր/շատ օգտագործվող չթարգմանված տարրեր/կատեգորիա")
 {
     Content = WikitextUtils.ToWikiTable(sorted, ["Տարր", "Օգտագործման քանակ"])
 };

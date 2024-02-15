@@ -47,7 +47,7 @@ var sorted = freqDict.Where(kvp => kvp.Value > 2)
         return new List<object> { $"[[d:{kvp.Key}]]", kvp.Value, labels.en ?? string.Empty, labels.ru ?? string.Empty };
     }).ToList();
 
-var destPage = new WikiPage(hywiki, "Մասնակից:ԱշոտՏՆՂ/ցանկեր/շատ_օգտագործվող_չթարգմանված_տարրեր")
+var destPage = new WikiPage(hywiki, "Վիքիպեդիա:Ցանկեր/շատ_օգտագործվող_չթարգմանված_տարրեր")
 {
     Content = WikitextUtils.ToWikiTable(sorted, ["Տարր", "Օգտագործման քանակ", "Անգլերեն պիտակ", "Ռուսերեն պիտակ"])
 };

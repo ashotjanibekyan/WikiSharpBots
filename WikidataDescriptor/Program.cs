@@ -10,12 +10,10 @@ var translationProvider = new TranslationProvider();
 await translationProvider.Init();
 
 var rand = new Random();
-var tasks = new List<Task>();
-var semaphore = new SemaphoreSlim(100, 100);
-const int sampleSize = 10000;
-const int maxItemId = 125000000;
+const int maxItemId = 126000000;
 
 var itemsToWorkOn = new BlockingCollection<string>(100);
+var tasks = new List<Task>();
 
 var consumer = Task.Run(async () =>
 {
@@ -23,7 +21,11 @@ var consumer = Task.Run(async () =>
     {
         try
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             var q = itemsToWorkOn.Take();
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine(elapsedMs);
             var (en, hy, entity) = await GetEnglishAndArmenianDescriptions(q);
             if (en is null || hy is not null)
             {
@@ -37,25 +39,26 @@ var consumer = Task.Run(async () =>
             }
 
         }
-        catch (InvalidOperationException)
+        catch (Exception ex)
         {
         }
     }
 });
 
 
-for (var i = 0; i < sampleSize; i++)
+for (var i = 0; i < Environment.ProcessorCount; i++)
 {
     tasks.Add(Task.Run(async () =>
     {
-        await semaphore.WaitAsync();
-        var id = $"Q{rand.NextInt64(maxItemId)}";
-        var (en, hy, _) = await GetEnglishAndArmenianDescriptions(id);
-        if (en is not null && hy is null && translationProvider.Translations.Contains(en))
+        while (true)
         {
-            itemsToWorkOn.Add(id);
+            var id = $"Q{rand.NextInt64(maxItemId)}";
+            var (en, hy, _) = await GetEnglishAndArmenianDescriptions(id);
+            if (en is not null && hy is null && translationProvider.Translations.Contains(en))
+            {
+                itemsToWorkOn.Add(id);
+            }
         }
-        semaphore.Release();
     }));
 }
 
